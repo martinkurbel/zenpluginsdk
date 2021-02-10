@@ -1,0 +1,11 @@
+framework module ZENPluginSDK {
+  umbrella header "ZENPluginSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module ZENPluginSDK.Swift {
+    header "ZENPluginSDK-Swift.h"
+    requires objc
+}

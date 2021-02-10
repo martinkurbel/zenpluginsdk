@@ -1,0 +1,692 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ZENPluginSDK
+import Alamofire
+import CommonCrypto
+import CoreLocation
+import CoreMotion
+import Foundation
+import React
+import SSZipArchive
+import Swift
+import UIKit
+import UserNotifications
+import WebKit
+@_exported import ZENPluginSDK
+@_inheritsConvenienceInitializers @objc public class ZENPluginSDKObject : ObjectiveC.NSObject {
+  @objc required convenience public init(_ dictionary: [Swift.String : Any])
+  @objc override dynamic public init()
+  @objc public func jsonObject() -> [Swift.String : Any]
+  @objc public func jsonData() -> Foundation.Data?
+  @objc public class func arrayOf(_ array: [Any]) -> [Any]
+  @objc deinit
+}
+@objc public enum ZENlineType : Swift.Int {
+  case None
+  case Text
+  case IconText
+  case IconProgress
+  case Loading
+  case Buttons
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc public class lineTypeParams : ObjectiveC.NSObject {
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class widgetParams : ObjectiveC.NSObject {
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class ZENWidgetLine : ZENPluginSDK.ZENPluginSDKObject {
+  @objc weak public var widget: ZENPluginSDK.ZENWidget?
+  @objc public var type: ZENPluginSDK.ZENlineType
+  @objc public var lines: Swift.Int
+  @objc public var richText: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc public var iconName: Foundation.URL? {
+    @objc get
+    @objc set
+  }
+  @objc public var icon: UIKit.UIImage? {
+    @objc get
+    @objc set
+  }
+  @objc public var progress: Swift.Float {
+    @objc get
+    @objc set
+  }
+  @objc public var loading: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var actions: [ZENPluginSDK.ZENWidgetAction]? {
+    @objc get
+    @objc set
+  }
+  @objc required convenience public init(_ dictionary: [Swift.String : Any])
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class ZENWidget : ZENPluginSDK.ZENPluginSDKObject {
+  @objc public var pluginId: Swift.String?
+  @objc public var image: UIKit.UIImage?
+  @objc public var imageURL: Foundation.URL?
+  @objc public var title: Swift.String?
+  @objc public var lines: [ZENPluginSDK.ZENWidgetLine]? {
+    @objc get
+    @objc set
+  }
+  @objc required convenience public init(_ dictionary: [Swift.String : Any])
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class ZENWidgetAction : ObjectiveC.NSObject {
+  @objc weak public var line: ZENPluginSDK.ZENWidgetLine?
+  @objc public var handler: (() -> Swift.Void)?
+  @objc public var title: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc public var image: UIKit.UIImage? {
+    @objc get
+    @objc set
+  }
+  @objc public var imageURL: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc public var isEnabled: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var isHidden: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc convenience public init(title: Swift.String?, image: UIKit.UIImage?, handler: (() -> Swift.Void)? = nil)
+  @objc convenience public init(title: Swift.String?, imageURL: Swift.String?, handler: (() -> Swift.Void)? = nil)
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc(ZENPluginProtocol) public protocol ZENPluginProtocol {
+  @objc func pluginController() -> UIKit.UIViewController?
+  @objc func initializePlugin(_ params: [Swift.String : Any])
+  @objc func stopBackgroundProcesses()
+  @objc func resumeBackgroundProcesses()
+  @objc func addObserver()
+  @objc func removeObserver()
+  @objc optional func didReceivePushNotification(_ aps: [Swift.String : Any])
+}
+@_inheritsConvenienceInitializers @objc(ZENPluginConstants) public class ZENPluginConstants : ObjectiveC.NSObject {
+  @objc public static let pluginId: Swift.String
+  @objc public static let assetsURL: Swift.String
+  @objc public static let menuImage: Swift.String
+  @objc public static let backImage: Swift.String
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc public enum ZENSDKEnvironment : Swift.Int {
+  case development
+  case testing
+  case production
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc public class ZENSDKenvParams : ObjectiveC.NSObject {
+  @objc public static let development: Swift.String
+  @objc public static let testing: Swift.String
+  @objc public static let production: Swift.String
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class ZENSDKapiParams : ObjectiveC.NSObject {
+  @objc public static let appVersion: Swift.String
+  @objc public static let sdkVersion: Swift.String
+  @objc public static let country: Swift.String
+  @objc public static let language: Swift.String
+  @objc public static let device_id: Swift.String
+  @objc public static let platform: Swift.String
+  @objc public static let sim_country: Swift.String
+  @objc public static let dealer_country: Swift.String
+  @objc public static let plugin: Swift.String
+  @objc public static let plugins: Swift.String
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class ZENSDKnotifications : ObjectiveC.NSObject {
+  @objc public static let pluginsListUpdated: Foundation.NSNotification.Name
+  @objc public static let pluginsLoadingFailed: Foundation.NSNotification.Name
+  @objc public static let pluginDownloaded: Foundation.NSNotification.Name
+  @objc public static let pluginDownloadingFailed: Foundation.NSNotification.Name
+  @objc public static let assetsDownloaded: Foundation.NSNotification.Name
+  @objc public static let assetsDownloadingFailed: Foundation.NSNotification.Name
+  @objc public static let widgetInfoUpdated: Foundation.NSNotification.Name
+  @objc public static let widgetLineUpdated: Foundation.NSNotification.Name
+  @objc public static let pluginWantsToShowUI: Foundation.NSNotification.Name
+  @objc public static let pluginWantsToShowMenu: Foundation.NSNotification.Name
+  @objc public static let pluginWantsToDismiss: Foundation.NSNotification.Name
+  @objc public static let pluginLoadingComplete: Foundation.NSNotification.Name
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class ZENSDKConstants : ObjectiveC.NSObject {
+  @objc public static let tryDownloadAgainTimeout: Swift.Double
+  @objc public static let sendEventInterval: Swift.Double
+  @objc public static let sendEventAmount: Swift.Int
+  @objc public static let maxEventCount: Swift.Int
+  @objc public static let platform: Swift.String
+  @objc public static let app_id: Swift.String
+  @objc public static let errorDomain: Swift.String
+  @objc public static let client_key: Swift.String
+  @objc public static func environment(_ env: Swift.String?) -> ZENPluginSDK.ZENSDKEnvironment
+  @objc deinit
+  @objc override dynamic public init()
+}
+extension ZENPluginSDK {
+  @objc dynamic public func pluginId(_ sender: ZENPluginSDK.ZENPluginProtocol) -> Swift.String?
+  @objc dynamic public func assetsURL(_ sender: ZENPluginSDK.ZENPluginProtocol) -> Swift.String?
+  @objc dynamic public func pluginMetadata(_ sender: ZENPluginSDK.ZENPluginProtocol) -> ZENPluginSDK.ZENPluginInfo?
+  @objc dynamic public func sendWidgetData(_ sender: ZENPluginSDK.ZENPluginProtocol, widget: ZENPluginSDK.ZENWidget)
+  @objc dynamic public func requestToOpenController(_ sender: ZENPluginSDK.ZENPluginProtocol)
+  @objc dynamic public func requestToShowMenu()
+  @objc dynamic public func requestToClose()
+  @objc dynamic public func menuButtonImage() -> Swift.String?
+  @objc dynamic public func backButtonImage() -> Swift.String?
+  @objc dynamic public func menuButton() -> UIKit.UIBarButtonItem?
+  @objc dynamic public func saveValue(_ sender: ZENPluginSDK.ZENPluginProtocol, key: Swift.String, value: Swift.AnyObject)
+  @objc dynamic public func loadValue(_ sender: ZENPluginSDK.ZENPluginProtocol, key: Swift.String) -> Swift.AnyObject?
+  @objc dynamic public func saveData(_ sender: ZENPluginSDK.ZENPluginProtocol, dic: [Swift.String : Swift.AnyObject])
+  @objc dynamic public func loadData(_ sender: ZENPluginSDK.ZENPluginProtocol) -> [Swift.String : Swift.AnyObject]
+  @objc dynamic public func sendEvent(_ sender: ZENPluginSDK.ZENPluginProtocol, type: Swift.String, payload: [Swift.String : Swift.AnyObject])
+  @objc dynamic public func revokeDataProcessingConsent(_ sender: ZENPluginSDK.ZENPluginProtocol, completion: @escaping ([Swift.String : Any]?, Swift.Error?) -> ())
+}
+extension ZENPluginSDK : CoreLocation.CLLocationManagerDelegate {
+  @objc dynamic public func isLocationServiceAvailable(_ callback: @escaping (Swift.Bool) -> ())
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ZENPluginAUXController : UIKit.UIViewController {
+  @objc public var info: ZENPluginSDK.ZENPluginInfo {
+    get
+  }
+  @objc public var okHandler: ((ZENPluginSDK.ZENPluginInfo) -> Swift.Void)?
+  @objc public var cancelHandler: (() -> Swift.Void)?
+  @objc public var agreementParams: [Swift.String : Any]?
+  @objc public var downloadParams: [Swift.String : Any]?
+  @objc public var updateParams: [Swift.String : Any]?
+  @objc public var assetsParams: [Swift.String : Any]?
+  @objc public var cannotLoadPlugin: Swift.String?
+  @objc public init(info: ZENPluginSDK.ZENPluginInfo)
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public func viewDidLoad()
+  @objc deinit
+  @objc override dynamic public func viewDidLayoutSubviews()
+}
+extension UIImage {
+  @objc convenience dynamic public init?(color: UIKit.UIColor, size: CoreGraphics.CGSize = CGSize(width: 1, height: 1))
+}
+extension UIViewController {
+  @objc dynamic public func isModal() -> Swift.Bool
+}
+@_inheritsConvenienceInitializers @objc public class ZENPluginSDKMethod : ObjectiveC.NSObject {
+  @objc deinit
+  @objc override dynamic public init()
+}
+extension ZENPluginSDK {
+  @objc dynamic public func APIGETRequest(_ sender: ZENPluginSDK.ZENPluginProtocol, url: Foundation.URL, completion: @escaping (Swift.Error?, Any?) -> ())
+  @objc dynamic public func APIPOSTRequest(_ sender: ZENPluginSDK.ZENPluginProtocol, url: Foundation.URL, params: [Swift.String : Any]?, completion: @escaping (Swift.Error?, Any?) -> ())
+  @objc dynamic public func APIRequest(_ sender: ZENPluginSDK.ZENPluginProtocol, url: Foundation.URL, method: Swift.String, params: [Swift.String : Any]?, completion: @escaping (Swift.Error?, Any?) -> ())
+  @objc dynamic public func APIRequest(_ sender: ZENPluginSDK.ZENPluginProtocol, url: Foundation.URL, method: Swift.String, params: [Swift.String : Any]?, headers: [Swift.String : Swift.String]?, completion: @escaping (Swift.Error?, Any?) -> ())
+}
+@_inheritsConvenienceInitializers @objc public class ZENSDKinfoParams : ObjectiveC.NSObject {
+  @objc public static let device_id: Swift.String
+  @objc public static let app_version: Swift.String
+  @objc public static let sdk_version: Swift.String
+  @objc public static let environment: Swift.String
+  @objc public static let language: Swift.String
+  @objc public static let sim_country: Swift.String
+  @objc public static let dealer_country: Swift.String
+  @objc public static let dealer: Swift.String
+  @objc public static let clientKey: Swift.String
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class ZENPluginSDKInfo : ZENPluginSDK.ZENPluginSDKObject {
+  @objc required convenience public init(_ dictionary: [Swift.String : Any])
+  public func environmentAsString() -> Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum ZENPluginType : Swift.Int {
+  case Native
+  case React
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(ZENPluginStatus) public enum ZENPluginStatus : Swift.Int {
+  case canShowUI
+  case noLicense
+  case needUpdate
+  case noBundle
+  case noAssets
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc public class ZENSDKAssets : ZENPluginSDK.ZENPluginSDKObject {
+  @objc public var bundleUrl: Swift.String? {
+    get
+  }
+  @objc public var checksum: Swift.String? {
+    get
+  }
+  @objc public var binary: Swift.String? {
+    get
+  }
+  @objc public var moduleName: Swift.String? {
+    get
+  }
+  public var size: Swift.Int? {
+    get
+  }
+  public struct ZENSDKAssetsParams {
+  }
+  @objc required convenience public init(_ dictionary: [Swift.String : Any])
+  @objc override public func jsonObject() -> [Swift.String : Any]
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class ZENSDKSettings : ZENPluginSDK.ZENPluginSDKObject {
+  @objc public var layoutVariant: Swift.String? {
+    get
+  }
+  @objc public var backendApi: Swift.String? {
+    get
+  }
+  public struct ZENSDKSettingsParams {
+  }
+  @objc required convenience public init(_ dictionary: [Swift.String : Any])
+  @objc override public func jsonObject() -> [Swift.String : Any]
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class ZENSDKDependencies : ZENPluginSDK.ZENPluginSDKObject {
+  @objc public var sdkVersion: Swift.String? {
+    get
+  }
+  @objc public var appVersion: Swift.String? {
+    get
+  }
+  public struct ZENSDKSettingsParams {
+  }
+  @objc required convenience public init(_ dictionary: [Swift.String : Any])
+  @objc override public func jsonObject() -> [Swift.String : Any]
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class ZENSDKIcons : ZENPluginSDK.ZENPluginSDKObject {
+  @objc public var twoX: Swift.String? {
+    get
+  }
+  @objc public var threeX: Swift.String? {
+    get
+  }
+  public struct ZENSDKIconsParams {
+  }
+  @objc required convenience public init(_ dictionary: [Swift.String : Any])
+  @objc override public func jsonObject() -> [Swift.String : Any]
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class ZENPluginInfo : ZENPluginSDK.ZENPluginSDKObject {
+  @objc public var id: Swift.String {
+    get
+  }
+  @objc public var type: ZENPluginSDK.ZENPluginType {
+    get
+  }
+  @objc public var priority: Swift.Int {
+    get
+  }
+  @objc public var name: Swift.String? {
+    get
+  }
+  @objc public var version: Swift.String? {
+    get
+  }
+  @objc public var language: Swift.String? {
+    get
+  }
+  @objc public var enabled: Swift.Bool {
+    get
+  }
+  @objc public var forceUpdate: Swift.Bool {
+    get
+  }
+  @objc public var autoUpdate: Swift.String {
+    get
+  }
+  @objc public var licenseRevision: Swift.Int {
+    get
+  }
+  @objc public var dataConsent: Swift.Bool {
+    get
+  }
+  @objc public var menuPath: Swift.String {
+    get
+  }
+  @objc public var dependencies: ZENPluginSDK.ZENSDKDependencies? {
+    get
+  }
+  @objc public var assets: ZENPluginSDK.ZENSDKAssets? {
+    get
+  }
+  @objc public var settings: ZENPluginSDK.ZENSDKSettings? {
+    get
+  }
+  @objc public var reactNative: ZENPluginSDK.ZENSDKAssets? {
+    get
+  }
+  @objc public var native: ZENPluginSDK.ZENSDKAssets? {
+    get
+  }
+  @objc public var icons: ZENPluginSDK.ZENSDKIcons? {
+    get
+  }
+  @objc public var widget: Swift.Bool {
+    get
+  }
+  @objc public var brief: Swift.String? {
+    get
+  }
+  @objc public var freshVersion: ZENPluginSDK.ZENPluginInfo? {
+    get
+  }
+  public struct pluginParams {
+  }
+  public struct pluginTypes {
+  }
+  public struct ZENPluginUpdate {
+  }
+  @objc required convenience public init(_ dictionary: [Swift.String : Any])
+  @objc override public func jsonObject() -> [Swift.String : Any]
+  @objc public func moduleName() -> Swift.String?
+  @objc public func devMode() -> Swift.Bool
+  @objc public func downloaded() -> Swift.Bool
+  @objc public func agreementAccepted() -> Swift.Bool
+  @objc public func isWidgetAvailable() -> Swift.Bool
+  @objc public func newVersionAvailable() -> Swift.Bool
+  @objc public func isEnabled() -> Swift.Bool
+  @objc public func assetsAvailable() -> Swift.Bool
+  @objc public func assetsDownloaded() -> Swift.Bool
+  @objc public func loadImage(_ value: Swift.String = "", completion: @escaping ((UIKit.UIImage) -> ()))
+  @objc public func saveValue(_ key: Swift.String, value: Swift.AnyObject)
+  @objc public func loadValue(_ key: Swift.String) -> Swift.AnyObject?
+  @objc public func saveData(_ data: [Swift.String : Swift.AnyObject])
+  @objc public func loadData() -> [Swift.String : Swift.AnyObject]
+  @objc public func localImage(_ value: Swift.String = "") -> UIKit.UIImage?
+  @objc public func canShowUI() -> ZENPluginSDK.ZENPluginStatus
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension Request {
+  public func debugLog() -> Self
+}
+extension DownloadRequest {
+  open class func suggestedDownloadDestination(for directory: Foundation.FileManager.SearchPathDirectory = .documentDirectory, in domain: Foundation.FileManager.SearchPathDomainMask = .userDomainMask, with options: Alamofire.DownloadRequest.DownloadOptions) -> Alamofire.DownloadRequest.DownloadFileDestination
+}
+extension ZENPluginSDK {
+  @objc dynamic public func getUserData(_ completion: @escaping (Swift.Error?, Any?) -> ())
+}
+extension ZENPluginSDK {
+  @objc dynamic public func trackScreenView(_ name: Swift.String)
+  @objc dynamic public func trackScreenView(_ name: Swift.String, trackingId: Swift.String)
+  @objc dynamic public func trackEvent(_ category: Swift.String, action: Swift.String)
+  @objc dynamic public func trackEvent(_ category: Swift.String, action: Swift.String, optionalValues: [Swift.String : Swift.AnyObject]?)
+  @objc dynamic public func trackEvent(_ category: Swift.String, action: Swift.String, optionalValues: [Swift.String : Swift.AnyObject]?, trackingId: Swift.String)
+}
+@objc(HostAppProtocol) public protocol HostAppProtocol {
+  @objc optional func menuButtonImage() -> Swift.String?
+  @objc optional func backButtonImage() -> Swift.String?
+  @objc optional func trackScreenView(_ name: Swift.String)
+  @objc optional func trackScreenView(_ name: Swift.String, trackingId: Swift.String)
+  @objc optional func trackEvent(_ category: Swift.String, action: Swift.String, optionalValues: [Swift.String : Swift.AnyObject]?)
+  @objc optional func trackEvent(_ category: Swift.String, action: Swift.String, optionalValues: [Swift.String : Swift.AnyObject]?, trackingId: Swift.String)
+  @objc optional func getUserData(_ completion: @escaping (Swift.Error?, Any?) -> ())
+}
+@objc public enum ZENOrder : Swift.Int {
+  case asis
+  case name
+  case priority
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc public class ZENPluginSDK : ObjectiveC.NSObject {
+  @objc public static var instance: ZENPluginSDK.ZENPluginSDK
+  @objc final public let style: ZENPluginSDK.ZENPluginSDKStyle
+  @objc weak public var hostAppDelegate: ZENPluginSDK.HostAppProtocol?
+  @objc public var pluginsListUpdated: (([ZENPluginSDK.ZENPluginInfo]) -> Swift.Void)?
+  @objc public var pluginsLoadingFailed: (() -> Swift.Void)?
+  @objc public var pluginDownloaded: ((ZENPluginSDK.ZENPluginInfo) -> Swift.Void)?
+  @objc public var pluginDownloadingFailed: ((ZENPluginSDK.ZENPluginInfo) -> Swift.Void)?
+  @objc public var assetsDownloaded: ((ZENPluginSDK.ZENPluginInfo) -> Swift.Void)?
+  @objc public var assetsDownloadingFailed: ((ZENPluginSDK.ZENPluginInfo) -> Swift.Void)?
+  @objc public var widgetInfoUpdated: ((ZENPluginSDK.ZENWidget) -> Swift.Void)?
+  @objc public var widgetLineUpdated: ((ZENPluginSDK.ZENWidgetLine) -> Swift.Void)?
+  @objc public var pluginWantsToShowUI: ((ZENPluginSDK.ZENPluginInfo) -> Swift.Void)?
+  @objc public var pluginWantsToShowMenu: (() -> Swift.Void)?
+  @objc public var pluginWantsToDismiss: (() -> Swift.Void)?
+  @objc public var pluginLoadingComplete: ((ZENPluginSDK.ZENPluginInfo) -> Swift.Void)?
+  @objc override dynamic public init()
+  @objc deinit
+  @objc public func initializeSDK(_ params: [Swift.String : Any])
+  @objc public func updatePluginsFromNetwork()
+  @objc public func pluginsOrdered(by order: ZENPluginSDK.ZENOrder, section: Swift.String? = nil) -> [ZENPluginSDK.ZENPluginInfo]
+  @objc public func widgetsOrdered(by order: ZENPluginSDK.ZENOrder, section: Swift.String? = nil) -> [ZENPluginSDK.ZENPluginInfo]
+  @objc public func loadAUXController(_ info: ZENPluginSDK.ZENPluginInfo, messages: [Swift.String : Any]? = nil) -> ZENPluginSDK.ZENPluginAUXController?
+  @objc public func loadUI(_ info: ZENPluginSDK.ZENPluginInfo) -> UIKit.UIViewController?
+  @objc public func loadWidget(_ info: ZENPluginSDK.ZENPluginInfo) -> ZENPluginSDK.ZENWidget?
+  @objc public func pluginBy(identity: Swift.String) -> ZENPluginSDK.ZENPluginInfo?
+  @objc public func addObserver(_ info: ZENPluginSDK.ZENPluginInfo)
+  @objc public func removeObserver(_ info: ZENPluginSDK.ZENPluginInfo)
+  @objc public func revokeDataProcessing(_ info: ZENPluginSDK.ZENPluginInfo, completion: @escaping ([Swift.String : Any]?, Swift.Error?) -> ())
+  @objc public func isPluginLoaded(_ info: ZENPluginSDK.ZENPluginInfo) -> Swift.Bool
+  @objc public func closePlugin(_ info: ZENPluginSDK.ZENPluginInfo)
+  @objc public func closeAllPlugins()
+  @objc public func removeAssets(_ info: ZENPluginSDK.ZENPluginInfo)
+  @objc public func removePlugin(_ info: ZENPluginSDK.ZENPluginInfo)
+  @objc public func switchSandBoxMode(_ info: ZENPluginSDK.ZENPluginInfo, devURL: Swift.String?)
+  @objc public func setCustomStyle(_ params: [Swift.String : Any])
+  @objc public func setDefaultFont(_ font: UIKit.UIFont)
+  @objc public func setBaseURL(_ url: Swift.String)
+  @objc public func setHeader(_ key: Swift.String, value: Swift.String)
+  @objc public func didReceivePush(notification: [Swift.String : Any])
+  @objc public func registerForLocalNotifications(_ application: UIKit.UIApplication)
+  @objc public func removeLocalNotifications(_ application: UIKit.UIApplication)
+}
+extension Date {
+  public static func dateFromString(_ string: Swift.String) -> Foundation.Date?
+}
+@_inheritsConvenienceInitializers @objc public class messagesParams : ObjectiveC.NSObject {
+  @objc public static let agreementParams: Swift.String
+  @objc public static let downloadParams: Swift.String
+  @objc public static let updateParams: Swift.String
+  @objc public static let assetsParams: Swift.String
+  @objc public static let cannotLoadPlugin: Swift.String
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class confParams : ObjectiveC.NSObject {
+  @objc public static let titleText: Swift.String
+  @objc public static let bodyText: Swift.String
+  @objc public static let okButtonText: Swift.String
+  @objc public static let cancelButtonText: Swift.String
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class ZENSDKConfirmation : ZENPluginSDK.ZENPluginSDKObject {
+  @objc required convenience public init(_ dictionary: [Swift.String : Any])
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class ZENSDKstyleParams : ObjectiveC.NSObject {
+  @objc public static let fonts: ZENPluginSDK.ZENSDKstyleParams.ZENPluginSDKStyleParamsFont.Type
+  @objc public static let view: ZENPluginSDK.ZENSDKstyleParams.ZENPluginSDKStyleParamsView.Type
+  @objc public static let table: ZENPluginSDK.ZENSDKstyleParams.ZENPluginSDKStyleParamsTable.Type
+  @objc public static let buttons: ZENPluginSDK.ZENSDKstyleParams.ZENPluginSDKStyleParamsButtons.Type
+  @_inheritsConvenienceInitializers @objc public class ZENPluginSDKStyleParamsFont : ObjectiveC.NSObject {
+    @objc public static let title: Swift.String
+    @objc public static let subtitle: Swift.String
+    @objc public static let body: Swift.String
+    @objc public class var allKeys: [Swift.String] {
+      @objc get
+    }
+    @objc deinit
+    @objc override dynamic public init()
+  }
+  @_inheritsConvenienceInitializers @objc public class ZENPluginSDKStyleParamsView : ObjectiveC.NSObject {
+    @objc public static let backgroundColor: Swift.String
+    @objc public static let textColor: Swift.String
+    @objc public class var allKeys: [Swift.String] {
+      @objc get
+    }
+    @objc deinit
+    @objc override dynamic public init()
+  }
+  @_inheritsConvenienceInitializers @objc public class ZENPluginSDKStyleParamsTable : ObjectiveC.NSObject {
+    @objc public static let backgroundColor: Swift.String
+    @objc public static let cellBackgroundColor: Swift.String
+    @objc public static let separatorColor: Swift.String
+    @objc public class var allKeys: [Swift.String] {
+      @objc get
+    }
+    @objc deinit
+    @objc override dynamic public init()
+  }
+  @_inheritsConvenienceInitializers @objc public class ZENPluginSDKStyleParamsButtons : ObjectiveC.NSObject {
+    @objc public static let backgroundColor: Swift.String
+    @objc public static let titleColor: Swift.String
+    @objc public static let tintColor: Swift.String
+    @objc public class var allKeys: [Swift.String] {
+      @objc get
+    }
+    @objc deinit
+    @objc override dynamic public init()
+  }
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_inheritsConvenienceInitializers @objc public class ZENPluginSDKStyle : ObjectiveC.NSObject {
+  @objc public var fonts: ZENPluginSDK.ZENPluginSDKStyle.ZENPluginSDKStyleFont {
+    get
+  }
+  @objc public var view: ZENPluginSDK.ZENPluginSDKStyle.ZENPluginSDKStyleView {
+    get
+  }
+  @objc public var table: ZENPluginSDK.ZENPluginSDKStyle.ZENPluginSDKStyleTable {
+    get
+  }
+  @objc public var buttons: ZENPluginSDK.ZENPluginSDKStyle.ZENPluginSDKStyleButtons {
+    get
+  }
+  @_inheritsConvenienceInitializers @objc public class ZENPluginSDKStyleFont : ZENPluginSDK.ZENPluginSDKStyle.ZENPluginSDKStyleObject {
+    @objc public var title: UIKit.UIFont {
+      get
+    }
+    @objc public var subtitle: UIKit.UIFont {
+      get
+    }
+    @objc public var body: UIKit.UIFont {
+      get
+    }
+    @objc public var defaultFont: UIKit.UIFont {
+      get
+    }
+    @objc override dynamic public init()
+    @objc deinit
+  }
+  @_inheritsConvenienceInitializers @objc public class ZENPluginSDKStyleView : ZENPluginSDK.ZENPluginSDKStyle.ZENPluginSDKStyleObject {
+    @objc public var backgroundColor: UIKit.UIColor {
+      get
+    }
+    @objc public var textColor: UIKit.UIColor {
+      get
+    }
+    @objc override dynamic public init()
+    @objc deinit
+  }
+  @_inheritsConvenienceInitializers @objc public class ZENPluginSDKStyleTable : ZENPluginSDK.ZENPluginSDKStyle.ZENPluginSDKStyleObject {
+    @objc public var backgroundColor: UIKit.UIColor {
+      get
+    }
+    @objc public var cellBackgroundColor: UIKit.UIColor {
+      get
+    }
+    @objc public var separatorColor: UIKit.UIColor {
+      get
+    }
+    @objc override dynamic public init()
+    @objc deinit
+  }
+  @_inheritsConvenienceInitializers @objc public class ZENPluginSDKStyleButtons : ZENPluginSDK.ZENPluginSDKStyle.ZENPluginSDKStyleObject {
+    @objc public var backgroundColor: UIKit.UIColor {
+      get
+    }
+    @objc public var titleColor: UIKit.UIColor {
+      get
+    }
+    @objc public var tintColor: UIKit.UIColor {
+      get
+    }
+    @objc override dynamic public init()
+    @objc deinit
+  }
+  @objc @_inheritsConvenienceInitializers public class ZENPluginSDKStyleObject : ObjectiveC.NSObject {
+    @objc override dynamic public init()
+    @objc deinit
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension UIApplication {
+  @objc dynamic public class func topViewController(controller: UIKit.UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIKit.UIViewController?
+}
+extension ZENPluginSDK {
+  @objc dynamic public func createNotification(_ identity: Swift.Int, text: Swift.String, datetime: Foundation.Date, sound: Swift.String)
+  @objc dynamic public func updateNotification(_ identity: Swift.Int, text: Swift.String, datetime: Foundation.Date, sound: Swift.String)
+  @objc dynamic public func deleteNotification(_ identity: Swift.Int)
+}
+extension ZENPluginSDK {
+  @objc public static func runPlugin(_ sender: UIKit.UIViewController, info: ZENPluginSDK.ZENPluginInfo, push: Swift.Bool, ncClass: UIKit.UINavigationController.Type = UINavigationController.self)
+}
+extension ZENPluginSDK.ZENlineType : Swift.Equatable {}
+extension ZENPluginSDK.ZENlineType : Swift.Hashable {}
+extension ZENPluginSDK.ZENlineType : Swift.RawRepresentable {}
+extension ZENPluginSDK.ZENSDKEnvironment : Swift.Equatable {}
+extension ZENPluginSDK.ZENSDKEnvironment : Swift.Hashable {}
+extension ZENPluginSDK.ZENSDKEnvironment : Swift.RawRepresentable {}
+extension ZENPluginSDK.ZENPluginType : Swift.Equatable {}
+extension ZENPluginSDK.ZENPluginType : Swift.Hashable {}
+extension ZENPluginSDK.ZENPluginType : Swift.RawRepresentable {}
+extension ZENPluginSDK.ZENPluginStatus : Swift.Equatable {}
+extension ZENPluginSDK.ZENPluginStatus : Swift.Hashable {}
+extension ZENPluginSDK.ZENPluginStatus : Swift.RawRepresentable {}
+extension ZENPluginSDK.ZENOrder : Swift.Equatable {}
+extension ZENPluginSDK.ZENOrder : Swift.Hashable {}
+extension ZENPluginSDK.ZENOrder : Swift.RawRepresentable {}
